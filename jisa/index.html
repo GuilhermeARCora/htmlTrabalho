@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tela principal</title>
+    <title>Registrar</title>
     <link
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
@@ -12,70 +11,42 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="userAccount">
+    <div class="register-container">
       <i class="bx bxs-user"></i>
-      <span>Conta</span>
+      <h1>Registrar</h1>
+      <form id="register-form">
+        <input type="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Senha" required />
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Confirme a Senha"
+          required
+        />
+        <div id="error-message" class="error-message"></div>
+        <a href="login.html">Já possui conta?</a>
+        <button type="submit" class="btn-salvar">Registrar</button>
+      </form>
     </div>
-    <main>
-      <div class="formContainer">
-        <div class="newItem">
-          <div class="divDesc">
-            <label for="desc">Descrição</label>
-            <input type="text" id="desc" />
-          </div>
-          <div class="divAmount">
-            <label for="amount">Valor</label>
-            <input type="number" id="amount" />
-          </div>
-          <div class="divType">
-            <label for="type">Tipo</label>
-            <select id="type">
-              <option>Ganho</option>
-              <option>Gasto</option>
-            </select>
-          </div>
-          <button id="btnNew">Incluir</button>
-        </div>
-      </div>
-      <div class="divTable">
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th class="columnAmount">Valor</th>
-              <th class="columnType">Tipo</th>
-              <th class="columnAction"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Exemplo de Descrição</td>
-              <td class="columnAmount">100</td>
-              <td class="columnType">Ganho</td>
-              <td class="columnAction">
-                <a href="excluir.html"><i class="bx bxs-trash"></i></a>
-              </td>
-              <td class="columnAction">
-                <a href="alterar.html"><i class="bx bxs-edit"></i></a>
-              </td>
-            </tr>
-            <tr>
-              <td>Exemplo de Descrição</td>
-              <td class="columnAmount">80</td>
-              <td class="columnType">Gasto</td>
-              <td class="columnAction">
-                <a href="excluir.html"><i class="bx bxs-trash"></i></a>
-              </td>
-              <td class="columnAction">
-                <a href="alterar.html"><i class="bx bxs-edit"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
 
-    <!-- Botão para Saldo do Mês -->
-    <a href="saldoTotal.html" class="btnSaldo"> Saldo do Mês </a>
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+          const errorMessage = document.getElementById("error-message");
+
+          if (password !== confirmPassword) {
+            errorMessage.textContent = "As senhas não coincidem!";
+          } else {
+            errorMessage.textContent = "";
+            // Redireciona para a página de índice (home.html) se as senhas coincidirem
+            window.location.href = "login.html";
+          }
+        });
+    </script>
   </body>
 </html>
